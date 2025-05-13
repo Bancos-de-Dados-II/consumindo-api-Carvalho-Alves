@@ -88,3 +88,14 @@ form.addEventListener('submit', async (e) => {
   carregarTarefas();
 });
 
+window.editarTarefa = async (id) => {
+  const res = await fetch(`${apiURL}/${id}`);
+  const tarefa = await res.json();
+  titulo.value = tarefa.titulo;
+  descricao.value = tarefa.descricao;
+  data.value = tarefa.data;
+  tipo.value = tarefa.tipo;
+  idEditando = id;
+  const modal = new bootstrap.Modal(form);
+  modal.show();
+};
