@@ -15,4 +15,35 @@ const carregarTarefas = async () => {
   const lista = await resposta.json();
   tasks.innerHTML = '';
   lista.forEach(tarefa => renderizarTarefa(tarefa));
+
+};
+
+const renderizarTarefa = (tarefa) => {
+  let dataFormatada = 'Data não definida';  // Valor padrão
+
+  try {
+    if (tarefa.dataHora) {
+      // Converte a data para o formato Date, removendo a parte da hora
+      const data = new Date(tarefa.dataHora);
+      if (data instanceof Date && !isNaN(data)) {  // Verifica se a data é válida
+        // Exibe a data no formato 'dd/mm/aaaa'
+        dataFormatada = data.toLocaleDateString('pt-BR');
+      }
+    }
+  } catch (err) {
+    console.error('Erro ao processar a data:', err);
+  }
+
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <span class="fw-bold">${tarefa.titulo}</span>
+    <span class="small text-secondary">${dataFormatada}</span>
+    <p>${tarefa.descricao}</p>
+    <p class="text-muted">${tarefa.tipo}</p>
+    <span class="options">
+      <i class="fas fa-edit text-primary" onclick="editarTarefa('${tarefa.id}')"></i>
+      <i class="fas fa-trash-alt text-danger" onclick="excluirTarefa('${tarefa.id}')"></i>
+    </span>
+  `;
+  tasks.appendChild(div);
 };
