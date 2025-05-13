@@ -47,3 +47,44 @@ const renderizarTarefa = (tarefa) => {
   `;
   tasks.appendChild(div);
 };
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  if (titulo.value === '') {
+    msg.innerText = 'O título é obrigatório.';
+    return;
+  }
+
+  const tarefa = {
+    titulo: titulo.value,
+    descricao: descricao.value,
+    data: data.value,
+    tipo: tipo.value
+  };
+
+  if (idEditando) {
+    await fetch(`${apiURL}/${idEditando}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(tarefa)
+    });
+    idEditando = null;
+  } else {
+    await fetch(apiURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(tarefa)
+    });
+  }
+
+  titulo.value = '';
+  descricao.value = '';
+  data.value = '';
+  tipo.value = 'Pessoal';
+  msg.innerText = '';
+  const modal = bootstrap.Modal.getInstance(form);
+  modal.hide();
+  carregarTarefas();
+});
+
