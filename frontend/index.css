@@ -1,0 +1,84 @@
+body {
+  background-image: linear-gradient(#000000, #383838);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.app {
+  background-color: #C4C4C4;
+  width: 800px;
+  height: 600px;
+  border-radius: 8px;
+  padding: 15px;
+  overflow-y: scroll;
+}
+
+h4 {
+  background-color: #AFAFAF;
+  padding: 10px;
+  border-radius: 75px;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+#addNew {
+  background-color: #0094da;
+  padding: 10px;
+  border-radius: 75px;
+  width: 400px;
+  margin: 20px auto;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+#addNew:hover {
+  background-image: linear-gradient(#0a95ff, #26348c);
+}
+
+#tasks {
+  display: grid;
+  gap: 14px;
+}
+
+#tasks div {
+  background-color: #AFAFAF;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.options {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.options i {
+  cursor: pointer;
+}
+
+.modal .modal-content {
+  background: #C4C4C4;
+}
+
+.form-control {
+  background-color: #AFAFAF;
+  border: none;
+  border-radius: 20px;
+}
+
+.modal-title {
+  background-color: #AFAFAF;
+  padding: 10px;
+  border-radius: 75px;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+#msg {
+  color: red;
+}
