@@ -99,3 +99,10 @@ window.editarTarefa = async (id) => {
   const modal = new bootstrap.Modal(form);
   modal.show();
 };
+
+window.excluirTarefa = async (id) => {
+  await fetch(`${apiURL}/${id}`, { method: 'DELETE' });
+  carregarTarefas();
+};
+
+carregarTarefas();
